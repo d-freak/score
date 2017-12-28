@@ -12,8 +12,10 @@ import fs from 'fs';
         console.log("I have no data.");
         return;
     }
+    const saveData = JSON.parse(fs.readFileSync(saveDataPath));
     const buffer = [];
-    Object.entries(JSON.parse(fs.readFileSync(saveDataPath))).forEach(([ key, data ]) => {
+    Object.keys(saveData).forEach((key) => {
+        const data = saveData[key];
         buffer.push(`${key}: ${parseInt(data.total) / parseInt(data.count)}`);
     });
     console.log(buffer.join('\n'));
