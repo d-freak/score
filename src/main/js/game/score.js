@@ -19,10 +19,13 @@ import fs from 'fs';
             throw new Error(`Invalid input: ${process.env.INPUT}`);
         }
         if (saveData[key]) {
-            saveData[key] = (parseInt(saveData[key]) + parseInt(value)).toString();
+            const data = saveData[key];
+            data.total = (parseInt(data.total) + parseInt(value)).toString();
+            data.count = (parseInt(data.count) + 1).toString();
+            saveData[key] = data;
         }
         else {
-            saveData[key] = value;
+            saveData[key] = { total: value, count: 1 };
         }
     });
     fs.writeFileSync(saveDataPath, JSON.stringify(saveData));
