@@ -7,7 +7,7 @@
 import fs from 'fs';
 
 (() => {
-    const saveDataPath = `${__dirname}/${process.env.SAVE_DATA_PATH}`;
+    const saveDataPath = process.env.SAVE_DATA_PATH;
     const saveData = fs.existsSync(saveDataPath) ? JSON.parse(fs.readFileSync(saveDataPath)) : {};
     process.env.INPUT.replace(/\s{2,}/, ' ').split(' ').forEach((record) => {
         if (record.length < 2) {
