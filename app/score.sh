@@ -18,6 +18,11 @@ if [ $1 = "--reset" ]; then
     exit 0
 fi
 
+if [ $1 = "--ave" ]; then
+    node $SCRIPT_DIR_PATH/average.js
+    exit 0
+fi
+
 mkdir -p $SAVE_DIR_PATH 2>/dev/null
 
 node $SCRIPT_DIR_PATH/score.js
